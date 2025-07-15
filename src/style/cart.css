@@ -1,0 +1,354 @@
+.cart-page {
+  color: #333;
+  max-width: 900px;
+  margin: 0 auto 8rem auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #067db0;
+}
+
+.cart-page ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-page li {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-page li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-right: 1.5rem;
+}
+
+.cart-page li div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cart-page li h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+  text-align: left;
+}
+
+.cart-page li p {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0.75rem 0 0;
+  text-align: left;
+}
+
+.cart-page .quantity-controls {
+  display: block;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0;
+
+}
+
+
+.cart-page .quantity-controls button {
+  background-color: #067db0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-right : 5px;
+  margin-left : 5px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-page .quantity-controls button:hover:not(:disabled) {
+  background-color: #045c82;
+  transform: scale(1.05);
+}
+
+.cart-page .quantity-controls button:disabled {
+  background-color: #d0d0d0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cart-page .quantity-controls span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.cart-page li select {
+  margin-top: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.cart-page li select:focus {
+  outline: 2px solid #067db0;
+  outline-offset: 2px;
+}
+
+.cart-page li span:last-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #067db0;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.cart-page .empty-cart {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #666;
+  margin: 3rem 0;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cart-page h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #067db0;
+}
+
+.cart-page .checkout-button {
+  background: linear-gradient(135deg, #067db0, #045c82);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: block;
+  margin: 1.5rem auto 0;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page .checkout-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #045c82, #033f5e);
+  transform: scale(1.02);
+}
+
+.cart-page .checkout-button:disabled {
+  background: #d0d0d0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cart-page .payment-form {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cart-page .payment-form .StripeElement {
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.cart-page .payment-form .StripeElement--focus {
+  border-color: #067db0;
+  box-shadow: 0 0 5px rgba(6, 125, 176, 0.3);
+  outline: none;
+}
+
+.cart-page .pay-button {
+  background: linear-gradient(135deg, #067db0, #045c82);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: block;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-page .pay-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #045c82, #033f5e);
+  transform: scale(1.02);
+}
+
+.cart-page .pay-button:disabled {
+  background: #d0d0d0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cart-page .response-message {
+  color: #067db0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background-color: #e6f0fa;
+  border-radius: 5px;
+}
+
+.cart-page button:focus {
+  outline: 2px solid #067db0;
+  outline-offset: 2px;
+}
+
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Ensure image scales properly */
+  border-radius: 4px;
+  margin-right: 20px;
+  display: block; /* Ensure image is treated as a block element */
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-name {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.cart-item-details p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .cart-page {
+    padding: 1rem;
+    margin: 0 1rem 5rem 1rem;
+  }
+
+  .cart-page h1 {
+    font-size: 1.8rem;
+  }
+
+  .cart-page li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem;
+  }
+
+  .cart-page img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.75rem;
+    margin-right: 0;
+  }
+
+  .cart-page li h2 {
+    font-size: 1.1rem;
+  }
+
+  .cart-page li p {
+    font-size: 0.85rem;
+  }
+
+  .cart-page .quantity-controls {
+    gap: 0.5rem;
+  }
+
+  .cart-page .quantity-controls button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .cart-page .quantity-controls span {
+    min-width: 1.2rem;
+  }
+
+  .cart-page li select {
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .cart-page h2 {
+    font-size: 1.4rem;
+  }
+
+  .cart-page .checkout-button {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .cart-page .payment-form {
+    padding: 0.75rem;
+  }
+
+  .cart-page .payment-form .StripeElement {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .cart-page .pay-button {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+  }
+}

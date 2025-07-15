@@ -1,0 +1,17 @@
+// BACKEND => 
+// for running Spring backend   [8080]
+PS J:\React\Base\Doorzy_Final> cd .\java-backend\
+PS J:\React\Base\Doorzy_Final\java-backend> mvn spring-boot:run
+
+// for runnning mongodb server  [5000]
+PS J:\React\Base\Doorzy_Final> cd backend 
+PS J:\React\Base\Doorzy_Final\backend> node server.js
+
+// for running python ML server to fetch recommendations    [3001]
+PS J:\React\Base\Doorzy_Final> cd server
+PS J:\React\Base\Doorzy_Final\server> node server.js
+
+
+//  FRONTEND [React] [port 5173]
+PS J:\React\Base\Doorzy_Final> npm run dev
+

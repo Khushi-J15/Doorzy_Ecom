@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    margin-top:0;
+    /* padding-top: 100px; */
+}
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #067db0;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* position:fixed; */
+    width: 100%;
+    margin-top:0;
+    
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.navbar-search input {
+    padding: 10px;
+    width: 500px;
+    border: none;
+    border-radius: 3px;
+}
+
+.navbar-search button {
+    padding: 10px;
+    border: none;
+    margin-left: 2px;
+    background-color: #fff;
+    color: #067db0;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.navbar-link a,
+li {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 10px;
+    font-weight: bold;
+    list-style: none;
+}
