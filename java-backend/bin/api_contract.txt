@@ -1,0 +1,81 @@
+To register user : 
+
+curl --location 'http://localhost:8080/api/register' \
+--header 'Content-Type: application/json' \
+
+--data-raw '  {
+      "email": "v@gmail.com",
+      "password": "12345678",
+      "fullName": "Test User"
+  }'
+
+
+
+  User login : 
+
+  curl --location 'http://localhost:8080/api/login' \
+--header 'Content-Type: application/json' \
+
+--data-raw '{
+    "email":"v@gmail.com",
+    "password":"12345678"
+    
+    
+}'
+
+
+Get all products : 
+
+curl --location 'http://localhost:8080/api/products' \
+
+
+Add product to card : 
+
+curl --location 'http://localhost:8080/api/cart/add' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2QGdtYWlsLmNvbSIsImlhdCI6MTc1MjQwNTQwOSwiZXhwIjoxNzUyNDkxODA5fQ.SfUe7OL7cv_U_4-XW__ZPfmL9NafbsqPdr-VlxVMM_o' \
+--header 'Cookie: x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YWM3ZTYxOC1kODk4LTQwM2ItOWM2Yy05MzA5NDZhYTIzMGYiLCJleHAiOjE3Nzk5NzEwODYsImlhdCI6MTc0ODQzNTA4NiwiaXNBcHByb3ZlZCI6dHJ1ZSwib3JnYW5pemF0aW9uX2lkIjoiIiwic2Vzc2lvbl9pZCI6IjAxOTVhZTM0LTEyZTctN2QxMy05NjY3LWNmMzQwZmFiNWY1MiJ9.V3xbLkM3wp2bUrM-Xj1iRsWBGHuwtfbrI0vmWScucz4' \
+--data '{
+    "productId":"68739404df92be7628c7d103",
+    "quantity":4
+}'
+
+
+To get product from card : 
+
+curl --location 'http://localhost:8080/api/cart' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2QGdtYWlsLmNvbSIsImlhdCI6MTc1MjQwNTQwOSwiZXhwIjoxNzUyNDkxODA5fQ.SfUe7OL7cv_U_4-XW__ZPfmL9NafbsqPdr-VlxVMM_o' \
+--header 'Cookie: x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YWM3ZTYxOC1kODk4LTQwM2ItOWM2Yy05MzA5NDZhYTIzMGYiLCJleHAiOjE3Nzk5NzEwODYsImlhdCI6MTc0ODQzNTA4NiwiaXNBcHByb3ZlZCI6dHJ1ZSwib3JnYW5pemF0aW9uX2lkIjoiIiwic2Vzc2lvbl9pZCI6IjAxOTVhZTM0LTEyZTctN2QxMy05NjY3LWNmMzQwZmFiNWY1MiJ9.V3xbLkM3wp2bUrM-Xj1iRsWBGHuwtfbrI0vmWScucz4'
+
+To delete product form card : 
+
+curl --location --request DELETE 'http://localhost:8080/api/cart/68739404df92be7628c7d103' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2QGdtYWlsLmNvbSIsImlhdCI6MTc1MjQwNTQwOSwiZXhwIjoxNzUyNDkxODA5fQ.SfUe7OL7cv_U_4-XW__ZPfmL9NafbsqPdr-VlxVMM_o' \
+--header 'Cookie: x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YWM3ZTYxOC1kODk4LTQwM2ItOWM2Yy05MzA5NDZhYTIzMGYiLCJleHAiOjE3Nzk5NzEwODYsImlhdCI6MTc0ODQzNTA4NiwiaXNBcHByb3ZlZCI6dHJ1ZSwib3JnYW5pemF0aW9uX2lkIjoiIiwic2Vzc2lvbl9pZCI6IjAxOTVhZTM0LTEyZTctN2QxMy05NjY3LWNmMzQwZmFiNWY1MiJ9.V3xbLkM3wp2bUrM-Xj1iRsWBGHuwtfbrI0vmWScucz4'
+
+Admin login : 
+
+curl --location 'http://localhost:8080/api/login' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YWM3ZTYxOC1kODk4LTQwM2ItOWM2Yy05MzA5NDZhYTIzMGYiLCJleHAiOjE3Nzk5NzEwODYsImlhdCI6MTc0ODQzNTA4NiwiaXNBcHByb3ZlZCI6dHJ1ZSwib3JnYW5pemF0aW9uX2lkIjoiIiwic2Vzc2lvbl9pZCI6IjAxOTVhZTM0LTEyZTctN2QxMy05NjY3LWNmMzQwZmFiNWY1MiJ9.V3xbLkM3wp2bUrM-Xj1iRsWBGHuwtfbrI0vmWScucz4' \
+--data-raw '{
+    "email":"admin@gmail.com",
+    "password":"12345678"
+}'
+
+
+Add product by admin : 
+
+curl --location 'http://localhost:8080/api/admin/products' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NTI0MDQ4MDgsImV4cCI6MTc1MjQ5MTIwOH0.Jyq1lvU10YHhlLt2ST986AZ-ZAIhM4-DGc9hyQWa_Lo' \
+--header 'Cookie: x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YWM3ZTYxOC1kODk4LTQwM2ItOWM2Yy05MzA5NDZhYTIzMGYiLCJleHAiOjE3Nzk5NzEwODYsImlhdCI6MTc0ODQzNTA4NiwiaXNBcHByb3ZlZCI6dHJ1ZSwib3JnYW5pemF0aW9uX2lkIjoiIiwic2Vzc2lvbl9pZCI6IjAxOTVhZTM0LTEyZTctN2QxMy05NjY3LWNmMzQwZmFiNWY1MiJ9.V3xbLkM3wp2bUrM-Xj1iRsWBGHuwtfbrI0vmWScucz4' \
+--data '{
+    "name":"dummy-product",
+    "description":"dummy description",
+    "price":100,
+    "imageUrl":"asfsadf",
+    "stockQuantity":20
+
+
+}'
