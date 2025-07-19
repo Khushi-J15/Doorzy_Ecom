@@ -104,7 +104,7 @@ function Home() {
                   className="product-imagee"
                 />
               </div>
-              <div className="product-name">{product.name || "Unknown Product"}</div>
+              <div className="product-name">{product.name}</div>
               <div className="product-rating-container">
                 <div className="product-rating-stars">⭐ {product.rating?.stars ?? 0}</div>
                 <div className="product-rating-count">({product.rating?.count ?? 0})</div>
@@ -113,9 +113,15 @@ function Home() {
                 ₹{(product.priceCents / 100).toFixed(2)}
               </div>
               <button
-                className="add-to-cart-button"
-                onClick={() => addToCart(product)}
-              >
+              className="add-to-cart-button"
+              onClick={() => {
+                dispatch({ type: "ADD_ITEM", payload: product });
+                toast.success(`${product.name} added to cart!`, {
+                  position: 'top-right',
+                  autoClose: 3000,
+                });
+              }}
+            >
                 Add To Cart
               </button>
             </div>

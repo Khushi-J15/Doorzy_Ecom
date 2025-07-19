@@ -15,3 +15,32 @@ PS J:\React\Base\Doorzy_Final\server> node server.js
 //  FRONTEND [React] [port 5173]
 PS J:\React\Base\Doorzy_Final> npm run dev
 
+// Nginx
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    server {
+        listen       9000;
+        server_name  localhost;
+        location /api/products {
+            proxy_pass http://localhost:5000;
+        }
+        location /api/cart {
+            proxy_pass http://localhost:5000;
+        }
+        location /api/users {
+            proxy_pass http://localhost:8080;
+        }
+        location /api/admin {
+            proxy_pass http://localhost:8080;
+        }
+        location /api/recommendations {
+            proxy_pass http://localhost:3001;
+        }
+        location / {
+            proxy_pass http://localhost:5173;
+        }
+    }
+}
