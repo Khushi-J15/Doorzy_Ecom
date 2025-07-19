@@ -102,7 +102,7 @@ public class ApiController {
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllActiveProducts());
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @GetMapping("/products/{id}")
@@ -156,6 +156,21 @@ public class ApiController {
             "itemCount", cartService.getCartItemCount(user)
         ));
     }
+
+    @PostMapping("/cart/view")
+    public ResponseEntity<?> viewCartFromClient(@RequestBody List<Map<String, Object>> cartItems) {
+        System.out.println("Received Cart Items from Frontend or Node:");
+        for (Map<String, Object> item : cartItems) {
+            System.out.println("Product ID: " + item.get("id"));
+            System.out.println("Name: " + item.get("name"));
+            System.out.println("Quantity: " + item.get("quantity"));
+            System.out.println("Price: " + item.get("price"));
+            System.out.println("Delivery Option: " + item.get("deliveryOptionId"));
+            System.out.println("-----");
+        }
+        return ResponseEntity.ok(Map.of("message", "Cart received", "count", cartItems.size()));
+    }
+
 
     @DeleteMapping("/cart/{productId}")
     public ResponseEntity<?> removeFromCart(@PathVariable String productId, Authentication auth) {

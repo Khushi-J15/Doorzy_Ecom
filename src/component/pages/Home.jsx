@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
+import { useLocation } from "react-router-dom";
 import '../../../styles/home.css';
 import { useCart } from '../context/CartContext';
 import { toast } from 'react-toastify';
 import '../../style/ReactToastify.css';
 
+
 function Home() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { dispatch } = useCart();
+  const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
@@ -19,6 +23,7 @@ function Home() {
       })
       .then((data) => {
         setProducts(data);
+        setFilteredProducts(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -27,6 +32,48 @@ function Home() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+    if (searchQuery) {
+      const filtered = products.filter(
+        (product) =>
+          product.name?.toLowerCase().includes(searchQuery) ||
+          product.description?.toLowerCase().includes(searchQuery)
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [location.search, products]);
+
+  const addToCart = (product) => {
+    try {
+      const cartItem = {
+        id: product.id,
+        name: product.name || "Unknown Product",
+        imageUrl: product.image || "/images/placeholder.jpg",
+        price: (product.priceCents || 1000) / 100,
+        description: product.description || "No description available",
+        rating: product.rating || { stars: 0, count: 0 },
+        quantity: 1,
+        deliveryOptionId: "1",
+      };
+      console.log("Adding to cart:", cartItem);
+      dispatch({ type: "ADD_ITEM", payload: cartItem });
+      toast.success(`${product.name} added to cart!`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    } catch (err) {
+      console.error("Error in addToCart:", err);
+      toast.error("Failed to add item to cart", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
+  };
 
   if (loading) {
     return <div className="main">Loading...</div>;
@@ -39,35 +86,41 @@ function Home() {
   return (
     <div className="main">
       <div className="products-grid">
-        {products.map((product) => (
-          <div className="product-container" key={product.id}>
-            <div className="product-image-container">
-              <img
-                src={`/${product.image}`}
-                alt={product.name}
-                className="product-imagee"
-              />
-            </div>
-            <div className="product-name">{product.name}</div>
-            <div className="product-rating-container">
-              <div className="product-rating-stars">⭐ {product.rating.stars}</div>
-              <div className="product-rating-count">({product.rating.count})</div>
-            </div>
-            <div className="product-price">₹{(product.priceCents / 100).toFixed(2)}</div>
-            <button
-              className="add-to-cart-button"
-              onClick={() => {
-                dispatch({ type: "ADD_ITEM", payload: product });
-                toast.success(`${product.name} added to cart!`, {
-                  position: 'top-right',
-                  autoClose: 3000,
-                });
-              }}
+        {filteredProducts.map((product) => {
+          const searchQuery = new URLSearchParams(location.search).get("search")?.toLowerCase();
+          const isHighlighted =
+            searchQuery &&
+            (product.name?.toLowerCase().includes(searchQuery) ||
+              product.description?.toLowerCase().includes(searchQuery));
+          return (
+            <div
+              className={`product-container ${isHighlighted ? "highlight" : ""}`}
+              key={product.id}
             >
-              Add To Cart
-            </button>
-          </div>
-        ))}
+              <div className="product-image-container">
+                <img
+                  src={product.image || "/images/placeholder.jpg"}
+                  alt={product.name || "Product"}
+                  className="product-imagee"
+                />
+              </div>
+              <div className="product-name">{product.name || "Unknown Product"}</div>
+              <div className="product-rating-container">
+                <div className="product-rating-stars">⭐ {product.rating?.stars ?? 0}</div>
+                <div className="product-rating-count">({product.rating?.count ?? 0})</div>
+              </div>
+              <div className="product-price">
+                ₹{(product.priceCents / 100).toFixed(2)}
+              </div>
+              <button
+                className="add-to-cart-button"
+                onClick={() => addToCart(product)}
+              >
+                Add To Cart
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

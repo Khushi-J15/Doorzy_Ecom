@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import ApiService from "../../service/ApiService";
 import '../../style/profile.css';
 
+
 const ProfilePage = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
@@ -39,6 +40,14 @@ const ProfilePage = () => {
     }
   };
 
+  const handleAddAddress = () => {
+    navigate("/add-address");
+  };
+
+  const handleEditAddress = () => {
+    navigate("/edit-address");
+  };
+
   if (!ApiService.isAuthenticated()) {
     return <Navigate to="/login" />;
   }
@@ -60,6 +69,14 @@ const ProfilePage = () => {
             <p><strong>Email:</strong> {userInfo.email}</p>
             <p><strong>Phone Number:</strong> {userInfo.phoneNumber}</p>
             <p><strong>Role:</strong> {userInfo.role}</p>
+          </div>
+          <div className="profile-actions">
+            <button className="profile-button" onClick={handleAddAddress}>
+              Add Address
+            </button>
+            <button className="profile-button" onClick={handleEditAddress}>
+              Edit Address
+            </button>
           </div>
         </div>
       )}

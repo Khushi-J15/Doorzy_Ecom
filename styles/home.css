@@ -18,6 +18,12 @@
 
 }
 
+
+.product-container.highlight {
+  border: 2px solid #067DB0;
+  background-color: #e6f3ff;
+}
+
 /* @media is used to create responsive design (making the
    website look good on any screen size). This @media
    means when the screen width is 2000px or less, we

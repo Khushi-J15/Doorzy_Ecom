@@ -114,6 +114,17 @@ const CartPage = () => {
     } finally {
       setIsCheckingOut(false);
     }
+    
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  fetch('http://localhost:5000/send-cart-to-java', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cart),
+  })
+    .then(res => res.json())
+    .then(data => console.log("Java backend response:", data))
+    .catch(err => console.error("Error:", err));
   };
 
   return (

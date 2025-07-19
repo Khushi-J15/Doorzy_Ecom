@@ -32,11 +32,14 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <h2>Doorzy</h2>
       <div className="navbar-brand">
         <NavLink to="/">
           <img src="./vite.svg" alt="KJ Mart" />
         </NavLink>
+        
       </div>
+      
       <form className="navbar-search" onSubmit={handleSearchSubmit}>
         <input
           type="text"

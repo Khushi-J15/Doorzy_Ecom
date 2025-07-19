@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import stripe from "stripe";
 import Product from "./models/product.js";
 import User from "./models/user.js";
+import axios from "axios";
+// const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Order Schema
 const orderSchema = new mongoose.Schema({
@@ -277,6 +279,34 @@ app.post("/confirm-payment", authenticateToken, async (req, res) => {
   }
 });
 
+app.post('/send-cart-to-java', async (req, res) => {
+  const cart = req.body;
+
+  if (!Array.isArray(cart)) {
+    return res.status(400).json({ message: "Invalid cart data" });
+  }
+
+  try {
+    const response = await axios.post("http://localhost:8080/api/cart/view", cart, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    res.status(200).json({
+      message: "Cart sent to Java backend successfully",
+      javaResponse: response.data
+    });
+  } catch (err) {
+    console.error("Error forwarding cart to Spring:", err.message);
+    res.status(500).json({ message: "Failed to send cart to Java backend" });
+  }
+});
+
+// app.use('/api/admin', createProxyMiddleware({
+//   target: 'http://localhost:8080',
+//   changeOrigin: true,
+// }));
 
 // Start server
 app.listen(PORT, () => {
