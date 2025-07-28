@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+dotenv.config({ path: '../.env' });
 import stripe from "stripe";
 import Product from "./models/product.js";
 import User from "./models/user.js";
@@ -28,7 +29,7 @@ const orderSchema = new mongoose.Schema({
 const Order = mongoose.model("Order", orderSchema);
 
 
-dotenv.config();
+
 const app = express();
 const PORT = 5000;
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
@@ -39,9 +40,10 @@ const stripeClient = stripe(STRIPE_SECRET_KEY);
 
 app.use(cors());
 app.use(express.json());
+console.log("Mongo URI:", process.env.MONGODB_URI);
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/ecommerce", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

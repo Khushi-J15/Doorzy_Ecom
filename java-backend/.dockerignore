@@ -1,0 +1,9 @@
+target/*.jar.original
+target/*.log
+target/*.tmp
+
+*.iml
+.idea/
+*.md
+*.DS_Store
+.vscode/
