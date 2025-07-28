@@ -13,10 +13,10 @@ function Home() {
   const [error, setError] = useState(null);
   const { dispatch } = useCart();
   const location = useLocation();
-
+  const BASE_URL = import.meta.env.VITE_API_URL || "https://doorzy-ecom-1.onrender.com";  
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/products")
+    fetch(`${BASE_URL}/api/products`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch products");
         return res.json();

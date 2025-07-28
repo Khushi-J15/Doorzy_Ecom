@@ -50,7 +50,7 @@ const Navbar = () => {
         <button type="submit">Search</button>
       </form>
       <div className="navbar-link">
-        <NavLink to="/" activeclassName="active">
+        <NavLink to="/" activeclassname="active">
           Home
         </NavLink>
         <NavLink to="/categories">Categories</NavLink>

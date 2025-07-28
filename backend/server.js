@@ -31,7 +31,7 @@ const Order = mongoose.model("Order", orderSchema);
 
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || "sk_test_your_stripe_secret_key";
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export default class ApiService {
-  static BASE_URL = "http://localhost:5000";
+  static BASE_URL = import.meta.env.VITE_API_URL || "https://doorzy-ecom-1.onrender.com";
+  
 
   static getHeader() {
     const token = localStorage.getItem("token");
