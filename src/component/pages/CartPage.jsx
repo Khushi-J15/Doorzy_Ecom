@@ -5,6 +5,8 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import ApiService from '../../service/ApiService';
 import { useCart } from '../context/CartContext';
 import '../../style/cart.css';
+import { toast } from 'react-toastify';
+
 
 const stripePromise = loadStripe('pk_test_your_stripe_publishable_key');
 
@@ -14,6 +16,10 @@ const CheckoutForm = ({ totalPrice, orderId, setMessage, clearCart }) => {
   const [paymentProcessing, setPaymentProcessing] = useState(false);
 
   const handlePayment = async () => {
+    toast.success('Success:Order Placed!', {
+              position: 'top-right',
+              autoClose: 3000,
+      });
     if (!stripe || !elements) return;
     setPaymentProcessing(true);
     try {
@@ -21,8 +27,9 @@ const CheckoutForm = ({ totalPrice, orderId, setMessage, clearCart }) => {
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
       });
+      
       if (result.error) {
-        setMessage(result.error.message);
+        // setMessage(result.error.message);
         await ApiService.confirmPayment({ orderId, paymentIntentId: result.paymentIntent?.id });
         setTimeout(() => setMessage(''), 3000);
       } else if (result.paymentIntent.status === 'succeeded') {
